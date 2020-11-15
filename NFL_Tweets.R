@@ -4,8 +4,8 @@
 
 
 ##PREPARATION
-# install.packages("rtweet")
-# install.packages("dplyr")
+#install.packages("rtweet")
+#install.packages("dplyr")
 #install.packages("ROAuth")
 #rTweet package credentials and set up. 
 library(rtweet)
@@ -13,14 +13,14 @@ library(dplyr)
 library(ROAuth)
 
 
-## store api keys (these are fake example values; replace with your own keys)
-## Get your own API Keys and Tokens for free at https://developer.twitter.com
+#store api keys (these are fake example values; replace with your own keys)
+#Get your own API Keys and Tokens for free at https://developer.twitter.com
 api_key <- "AeFYioyI9p" #example only
 api_secret_key <- "OiNP1FTUSsqmFiiy"#example only
 access_token <- "1267130388493"#example only
 access_token_secret <- "RnbiAajDCd4"#example only
 
-## authenticate via web browser
+#authenticate via web browser
 setup_twitter_oauth <- create_token(
   app = "rtweet_api",
   consumer_key = api_key,
@@ -120,11 +120,12 @@ for(i in 1:length(Teams)){
   Tweets_rtweet_DF <- head(Tweets_rtweet_DF, n = 300) 
   #One by One, add each teams tweets to the existing NFL2020_tweets that we loaded earlier
   NFL2020_tweets <- rbind.data.frame(NFL2020_tweets,Tweets_rtweet_DF)
-  #NFL2020_tweets <- distinct(NFL2020_tweets,text, .keep_all= TRUE) #Removed cause if a tweet has 3 hashes only one team will get credit
 }
 
+#save tweets as an .RData file so it this code can be ran again and new tweets can be added to the Data Frame
 save(NFL2020_tweets, file="NFL2020_tweets.RData")
 
+#summary view of tweets
 summary(NFL2020_tweets)
 
 
